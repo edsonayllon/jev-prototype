@@ -150,7 +150,9 @@ async function main() {
       if (s.judgments.type.choice !== m.judgments.type.choice) {
         diffs.push(`type ${m.judgments.type.choice} vs ${s.judgments.type.choice}`)
       }
-      if (s.judgments.sentiment.choice !== m.judgments.sentiment.choice) {
+      // Sentiment is hidden for scams in the UI, so a scam-only disagreement is not a regression.
+      const scam = s.judgments.type.choice === 'scam' || m.judgments.type.choice === 'scam'
+      if (!scam && s.judgments.sentiment.choice !== m.judgments.sentiment.choice) {
         diffs.push(`sentiment ${m.judgments.sentiment.choice} vs ${s.judgments.sentiment.choice}`)
       }
       if (diffs.length) {
