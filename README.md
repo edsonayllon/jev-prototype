@@ -98,3 +98,7 @@ shared/       types, config, ranking  (imported by both sides, bundled into the 
 src/          Vite + React client
 functions/    Cloud Function, source adapters, Jev questions/batching, golden set
 ```
+
+## License
+
+[MIT](LICENSE)
