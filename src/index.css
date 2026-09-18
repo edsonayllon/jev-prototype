@@ -1,0 +1,104 @@
+@import 'tailwindcss';
+
+/* Semantic tokens. Light by default, dark follows the device. */
+:root {
+  --bg: #f4f4f6;
+  --surface: #ffffff;
+  --surface-2: #eceef2;
+  --text: #17181c;
+  --text-2: #5f6470;
+  --text-3: #9a9fab;
+  --separator: rgba(20, 22, 30, 0.1);
+  --accent: #2f6fed;
+  --accent-soft: rgba(47, 111, 237, 0.12);
+  --bar: #d9dce3;
+
+  --news: #2f6fed;
+  --opinion: #7c5cd6;
+  --shill: #d98a0b;
+  --scam: #d63b3b;
+  --other: #7a8090;
+  --bullish: #1f9d5a;
+  --bearish: #d63b3b;
+  --neutral: #7a8090;
+  --worth: #0f9f6e;
+  --flagged: #c02c6b;
+
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.04), 0 6px 20px rgba(0, 0, 0, 0.05);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1014;
+    --surface: #17181d;
+    --surface-2: #22242b;
+    --text: #f0f1f4;
+    --text-2: #a5a9b4;
+    --text-3: #6f7480;
+    --separator: rgba(255, 255, 255, 0.09);
+    --accent: #6a96ff;
+    --accent-soft: rgba(106, 150, 255, 0.16);
+    --bar: #2c2f38;
+    --news: #6a96ff;
+    --opinion: #a68cff;
+    --shill: #f0a93a;
+    --scam: #ff6b6b;
+    --other: #9aa0ad;
+    --bullish: #3ecf85;
+    --bearish: #ff6b6b;
+    --neutral: #9aa0ad;
+    --worth: #34d399;
+    --flagged: #f472b6;
+    --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.35);
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-text: var(--text);
+  --color-text-2: var(--text-2);
+  --color-text-3: var(--text-3);
+  --color-separator: var(--separator);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-bar: var(--bar);
+  --color-news: var(--news);
+  --color-opinion: var(--opinion);
+  --color-shill: var(--shill);
+  --color-scam: var(--scam);
+  --color-other: var(--other);
+  --color-bullish: var(--bullish);
+  --color-bearish: var(--bearish);
+  --color-neutral: var(--neutral);
+  --color-worth: var(--worth);
+  --color-flagged: var(--flagged);
+  --shadow-card: var(--shadow-card);
+  --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+html {
+  color-scheme: light dark;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+input[type='range'] {
+  accent-color: var(--accent);
+}
+
+details > summary {
+  list-style: none;
+  cursor: pointer;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}

@@ -1,0 +1,33 @@
+{
+  "name": "jev-feed-triage-functions",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "22"
+  },
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "esbuild src/index.ts --bundle --platform=node --target=node22 --format=esm --packages=external --outfile=lib/index.js --banner:js=\"import { createRequire } from 'module'; const require = createRequire(import.meta.url);\"",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "golden": "tsx golden/run.ts"
+  },
+  "dependencies": {
+    "@typesafe-ai/sdk": "^0.6.0",
+    "firebase-admin": "^14.4.0",
+    "firebase-functions": "^7.4.0",
+    "rss-parser": "^3.13.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.1",
+    "esbuild": "^0.28.2",
+    "tsx": "^4.23.13",
+    "typescript": "~6.0.2",
+    "vitest": "^5.0.1"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true,
+    "@firebase/util@1.15.3": true,
+    "protobufjs@7.6.6": true
+  }
+}

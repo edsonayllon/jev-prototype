@@ -1,0 +1,15 @@
+node_modules
+dist
+*.local
+.env
+*.log
+.firebase
+firebase-debug.log
+functions/lib
+functions/.secret.local
+functions/golden/.cache
+coverage/
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+.idea
