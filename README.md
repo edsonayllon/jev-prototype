@@ -1,4 +1,4 @@
-# Jev Feed Triage
+# Tideline
 
 Paste a link (an RSS feed, a news site, or a single X post) or paste posts as text. Every item is tagged by
 **type** (news / opinion / shill / scam / other), **sentiment** (bullish / bearish / neutral), and whether it is
@@ -80,10 +80,12 @@ as a snapshot diff, and `npm run golden` tells you whether the change helped.
 
 Cloud Functions v2 needs a Firebase project on the Blaze plan.
 
+The default project is `tideline-app-9bdc1` (`.firebaserc`); `firebase use <other-project-id>` overrides it.
+
 ```sh
-firebase projects:create <project-id>          # or firebase use <existing-project-id>
 firebase functions:secrets:set TYPESAFE_API_KEY
-# fill VITE_FIREBASE_* in .env and set VITE_USE_EMULATORS=false
+firebase apps:sdkconfig web                     # fill VITE_FIREBASE_* in .env from this
+# set VITE_USE_EMULATORS=false in .env
 npm run build && firebase deploy
 ```
 

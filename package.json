@@ -1,5 +1,5 @@
 {
-  "name": "jev-feed-triage",
+  "name": "tideline",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -12,7 +12,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test": "vitest run",
-    "emulators": "firebase emulators:start --only functions,hosting --project demo-jev",
+    "emulators": "firebase emulators:start --only functions,hosting --project demo-tideline",
     "golden": "npm --prefix functions run golden"
   },
   "dependencies": {

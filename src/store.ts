@@ -47,7 +47,7 @@ export type Action =
   | { type: 'resetWeights' }
   | { type: 'clearRecent' }
 
-export const RECENT_KEY = 'jev:runs'
+export const RECENT_KEY = 'tideline:runs'
 export const RECENT_MAX = 10
 
 export const initialFilters = (): Filters => ({

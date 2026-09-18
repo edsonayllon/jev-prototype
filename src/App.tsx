@@ -32,7 +32,7 @@ export default function App() {
   return (
     <div className="mx-auto max-w-2xl px-5 pb-24 pt-12 sm:px-6">
       <header className="mb-8 border-b border-separator pb-6">
-        <h1 className="font-display text-4xl font-medium leading-none tracking-tight">Jev Feed Triage</h1>
+        <h1 className="font-display text-4xl font-medium leading-none tracking-tight">Tideline</h1>
         <p className="mt-3 max-w-prose text-base italic text-text-2">
           Paste a feed or some posts. Jev tags each one by type, sentiment, and whether it deserves your
           attention, with the raw probabilities behind every tag.

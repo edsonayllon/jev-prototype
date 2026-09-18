@@ -15,7 +15,7 @@ export function firebaseApp(): FirebaseApp {
   if (!app) {
     app = initializeApp({
       apiKey: env.VITE_FIREBASE_API_KEY || 'demo-api-key',
-      projectId: env.VITE_FIREBASE_PROJECT_ID || 'demo-jev',
+      projectId: env.VITE_FIREBASE_PROJECT_ID || 'demo-tideline',
       appId: env.VITE_FIREBASE_APP_ID,
     })
   }
