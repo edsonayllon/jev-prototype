@@ -36,6 +36,9 @@ export const analyzeFeed = onCall<unknown, Promise<AnalyzeResponse>>(
     memory: '512MiB',
     timeoutSeconds: 60,
     secrets: [TYPESAFE_API_KEY],
+    // Reject calls without a valid App Check token. The emulator does not issue them, so
+    // enforcement is off there and the client skips App Check when VITE_USE_EMULATORS=true.
+    enforceAppCheck: process.env.FUNCTIONS_EMULATOR !== 'true',
   },
   async (req) => {
     const { source, limit } = validate(req.data)

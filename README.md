@@ -89,7 +89,20 @@ firebase apps:sdkconfig web                     # fill VITE_FIREBASE_* in .env f
 npm run build && firebase deploy
 ```
 
-The prototype has no auth or App Check. Add App Check before exposing it publicly for more than a demo.
+### App Check
+
+The deployed `analyzeFeed` function enforces [App Check](https://firebase.google.com/docs/app-check), so only
+the registered web app can spend the TypeSafe key. One-time setup for a new project:
+
+```sh
+gcloud services enable recaptchaenterprise.googleapis.com
+gcloud recaptcha keys create --display-name=<name> --web --integration-type=score \
+  --domains=<project-id>.web.app,<project-id>.firebaseapp.com,localhost
+```
+
+Register the printed site key in Firebase console → App Check → Apps → your web app → reCAPTCHA Enterprise,
+and put it in `.env` as `VITE_RECAPTCHA_ENTERPRISE_SITE_KEY`. The emulators skip App Check on both sides, so
+local development needs none of this. The prototype has no user auth.
 
 ## Layout
 
