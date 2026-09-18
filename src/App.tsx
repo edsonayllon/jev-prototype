@@ -8,6 +8,7 @@ import { RecentRuns } from './components/RecentRuns'
 import { SourceInput } from './components/SourceInput'
 import { isFirebaseConfigured } from './firebase/app'
 import { buildView, initialState, reducer } from './store'
+import { figures } from './components/ui'
 
 export default function App() {
   const [state, dispatch] = useReducer(reducer, undefined, initialState)
@@ -29,17 +30,17 @@ export default function App() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-4 pb-24 pt-8 sm:px-6">
-      <header className="mb-6">
-        <h1 className="text-2xl font-semibold tracking-tight">Jev Feed Triage</h1>
-        <p className="mt-1 text-sm text-text-2">
+    <div className="mx-auto max-w-2xl px-5 pb-24 pt-12 sm:px-6">
+      <header className="mb-8 border-b border-separator pb-6">
+        <h1 className="font-display text-4xl font-medium leading-none tracking-tight">Jev Feed Triage</h1>
+        <p className="mt-3 max-w-prose text-base italic text-text-2">
           Paste a feed or some posts. Jev tags each one by type, sentiment, and whether it deserves your
           attention, with the raw probabilities behind every tag.
         </p>
       </header>
 
       {!isFirebaseConfigured && (
-        <p className="mb-4 rounded-xl bg-shill/15 px-3 py-2 text-xs text-shill">
+        <p className="mb-4 rounded-md border border-shill/30 bg-shill/10 px-3 py-2 text-xs text-shill">
           No Firebase config found. Copy <code>.env.example</code> to <code>.env</code> and run{' '}
           <code>npm run emulators</code>.
         </p>
@@ -49,14 +50,14 @@ export default function App() {
         <SourceInput busy={state.status === 'loading'} onSubmit={submit} />
 
         {state.status === 'error' && state.error && (
-          <p role="alert" className="rounded-xl bg-scam/10 px-3 py-2 text-sm text-scam">
+          <p role="alert" className="rounded-md border border-scam/30 bg-scam/10 px-3 py-2 text-sm text-scam">
             {state.error}
           </p>
         )}
 
         {run && view && (
           <>
-            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 text-xs text-text-3">
+            <div className={`flex flex-wrap items-baseline gap-x-3 gap-y-1 text-xs text-text-3 ${figures}`}>
               <span className="text-sm font-medium text-text">{run.resolvedSource.label}</span>
               <span>{run.items.length} items</span>
               <span>
@@ -66,7 +67,7 @@ export default function App() {
               <span>{run.usage.model}</span>
             </div>
             {run.warnings.length > 0 && (
-              <ul className="space-y-1 rounded-xl bg-shill/15 px-3 py-2 text-xs text-shill">
+              <ul className="space-y-1 rounded-md border border-shill/30 bg-shill/10 px-3 py-2 text-xs text-shill">
                 {run.warnings.map((w) => (
                   <li key={w}>{w}</li>
                 ))}

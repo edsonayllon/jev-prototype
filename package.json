@@ -16,6 +16,8 @@
     "golden": "npm --prefix functions run golden"
   },
   "dependencies": {
+    "@fontsource-variable/cormorant-garamond": "^5.3.0",
+    "@fontsource-variable/eb-garamond": "^5.3.0",
     "firebase": "^12.19.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0"

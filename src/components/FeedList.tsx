@@ -1,6 +1,7 @@
 import type { RankedItem } from '../../shared/types'
 import type { View } from '../store'
 import { ItemCard } from './ItemCard'
+import { card, figures } from './ui'
 
 function Section({
   title,
@@ -16,9 +17,9 @@ function Section({
   if (items.length === 0) return null
   const header = (
     <div className="flex items-baseline gap-2">
-      <h2 className="text-sm font-semibold uppercase tracking-wide text-text-2">{title}</h2>
-      <span className="text-xs text-text-3">{items.length}</span>
-      {hint && <span className="text-xs text-text-3">· {hint}</span>}
+      <h2 className="font-display text-xl font-semibold text-text">{title}</h2>
+      <span className={`text-sm text-text-3 ${figures}`}>{items.length}</span>
+      {hint && <span className="text-sm italic text-text-3">· {hint}</span>}
     </div>
   )
   const list = (
@@ -51,13 +52,13 @@ function Section({
 export function FeedList({ view }: { view: View }) {
   if (view.shown === 0) {
     return (
-      <p className="rounded-2xl bg-surface p-6 text-center text-sm text-text-2 shadow-card">
+      <p className={`${card} p-6 text-center font-display text-lg text-text-2`}>
         Nothing matches the current filters.
       </p>
     )
   }
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       <Section title="Worth your attention" items={view.worth} />
       <Section title="The rest" hint="sorted, but below the attention bar" items={view.rest} />
       <Section

@@ -1,8 +1,9 @@
 import type { RankingConfig } from '../../shared/config'
 import type { Action } from '../store'
+import { card, figures, label } from './ui'
 
 function Slider({
-  label,
+  label: name,
   value,
   onChange,
   hint,
@@ -15,7 +16,7 @@ function Slider({
   return (
     <label className="grid grid-cols-[7rem_1fr_3rem] items-center gap-2 text-xs">
       <span className="text-text-2" title={hint}>
-        {label}
+        {name}
       </span>
       <input
         type="range"
@@ -25,7 +26,7 @@ function Slider({
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
       />
-      <span className="text-right font-mono tabular-nums text-text-2">{value.toFixed(2)}</span>
+      <span className={`text-right text-text-2 ${figures}`}>{value.toFixed(2)}</span>
     </label>
   )
 }
@@ -42,16 +43,14 @@ export function RankingControls({
     dispatch({ type: 'weights', weights: patch(weights) })
   const w = weights
   return (
-    <details className="group rounded-2xl bg-surface p-4 shadow-card">
+    <details className={`group ${card}`}>
       <summary className="flex items-center justify-between text-sm font-medium">
         <span>Tune ranking</span>
-        <span className="text-xs text-text-3">re-ranks instantly, no model calls</span>
+        <span className="text-xs italic text-text-3">re-ranks instantly, no model calls</span>
       </summary>
       <div className="mt-4 grid gap-x-8 gap-y-2 sm:grid-cols-2">
         <div className="space-y-2">
-          <h4 className="text-[11px] font-semibold uppercase tracking-wide text-text-3">
-            Attention weights (relative)
-          </h4>
+          <h4 className={label}>Attention weights (relative)</h4>
           <Slider
             label="novelty"
             value={w.weights.novelty}
@@ -75,9 +74,7 @@ export function RankingControls({
           />
         </div>
         <div className="space-y-2">
-          <h4 className="text-[11px] font-semibold uppercase tracking-wide text-text-3">
-            Penalties and gates
-          </h4>
+          <h4 className={label}>Penalties and gates</h4>
           <Slider
             label="scam penalty"
             value={w.penalties.scam}
@@ -103,7 +100,7 @@ export function RankingControls({
       </div>
       <button
         type="button"
-        className="mt-3 text-xs font-medium text-accent hover:underline"
+        className="mt-3 text-xs font-medium text-accent underline-offset-2 hover:underline"
         onClick={() => dispatch({ type: 'resetWeights' })}
       >
         Reset to defaults

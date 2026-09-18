@@ -1,4 +1,5 @@
 import type { Action, RecentRun } from '../store'
+import { card, figures } from './ui'
 
 export function RecentRuns({
   runs,
@@ -11,12 +12,12 @@ export function RecentRuns({
 }) {
   if (runs.length === 0) return null
   return (
-    <section className="rounded-2xl bg-surface p-4 shadow-card">
+    <section className={card}>
       <div className="mb-2 flex items-center justify-between">
-        <h2 className="text-sm font-medium">Recent runs</h2>
+        <h2 className="font-display text-lg font-semibold">Recent runs</h2>
         <button
           type="button"
-          className="text-xs text-text-3 hover:text-text"
+          className="text-xs text-text-3 transition-colors hover:text-text"
           onClick={() => dispatch({ type: 'clearRecent' })}
         >
           clear
@@ -29,12 +30,12 @@ export function RecentRuns({
               type="button"
               onClick={() => dispatch({ type: 'load', run: r.response })}
               aria-current={r.runId === activeRunId}
-              className={`flex w-full items-baseline gap-2 rounded-lg px-2 py-1 text-left text-sm hover:bg-surface-2 ${
+              className={`flex w-full items-baseline gap-2 rounded-md px-2 py-1 text-left text-sm transition-colors hover:bg-surface-2 ${
                 r.runId === activeRunId ? 'bg-accent-soft' : ''
               }`}
             >
               <span className="truncate">{r.label}</span>
-              <span className="ml-auto shrink-0 text-xs text-text-3">
+              <span className={`ml-auto shrink-0 text-xs text-text-3 ${figures}`}>
                 {r.response.items.length} items ·{' '}
                 {new Date(r.at).toLocaleTimeString([], { timeStyle: 'short' })}
               </span>

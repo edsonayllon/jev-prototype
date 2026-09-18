@@ -1,5 +1,7 @@
 import { SENTIMENT_LABELS, TYPE_LABELS } from '../../shared/types'
 import type { Action, Filters, SortKey } from '../store'
+import { SOLID, type ChipTone } from './tone'
+import { figures } from './ui'
 
 function Toggle({
   on,
@@ -9,7 +11,7 @@ function Toggle({
 }: {
   on: boolean
   onClick: () => void
-  tone: string
+  tone: ChipTone
   children: string
 }) {
   return (
@@ -17,10 +19,9 @@ function Toggle({
       type="button"
       onClick={onClick}
       aria-pressed={on}
-      className={`rounded-full border px-2.5 py-1 text-xs font-medium transition ${
-        on ? 'border-transparent text-white' : 'border-separator bg-surface text-text-3 line-through'
+      className={`rounded-full border px-2.5 py-0.5 text-xs font-medium transition-colors ${
+        on ? `border-transparent ${SOLID[tone]}` : 'border-separator bg-surface text-text-3 line-through'
       }`}
-      style={on ? { background: `var(--${tone})` } : undefined}
     >
       {children}
     </button>
@@ -86,7 +87,7 @@ export function FilterBar({
           <option value="recency">recency</option>
         </select>
       </label>
-      <span className="ml-auto text-xs text-text-3">
+      <span className={`ml-auto text-xs text-text-3 ${figures}`}>
         {shown} of {total}
       </span>
     </div>

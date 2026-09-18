@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import type { SourceInput as Source } from '../../shared/types'
+import { card, chip, field } from './ui'
 
 const EXAMPLES: { label: string; url: string }[] = [
   { label: 'BBC News feed', url: 'https://feeds.bbci.co.uk/news/rss.xml' },
@@ -26,14 +27,14 @@ export function SourceInput({ busy, onSubmit }: { busy: boolean; onSubmit: (sour
 
   return (
     <form
-      className="rounded-2xl bg-surface p-4 shadow-card"
+      className={card}
       onSubmit={(e) => {
         e.preventDefault()
         if (!canSubmit) return
         onSubmit(mode === 'url' ? { kind: 'url', url: url.trim() } : { kind: 'paste', text })
       }}
     >
-      <div className="mb-3 flex gap-1 rounded-lg bg-surface-2 p-1 text-xs font-medium" role="tablist">
+      <div className="mb-3 flex gap-4 border-b border-separator text-sm" role="tablist">
         {(['url', 'paste'] as const).map((m) => (
           <button
             key={m}
@@ -41,8 +42,8 @@ export function SourceInput({ busy, onSubmit }: { busy: boolean; onSubmit: (sour
             role="tab"
             aria-selected={mode === m}
             onClick={() => setMode(m)}
-            className={`flex-1 rounded-md px-3 py-1.5 transition ${
-              mode === m ? 'bg-surface text-text shadow-sm' : 'text-text-2 hover:text-text'
+            className={`-mb-px border-b px-0.5 pb-2 transition-colors ${
+              mode === m ? 'border-ink text-text' : 'border-transparent text-text-2 hover:text-text'
             }`}
           >
             {m === 'url' ? 'Link' : 'Paste text'}
@@ -59,17 +60,12 @@ export function SourceInput({ busy, onSubmit }: { busy: boolean; onSubmit: (sour
             placeholder="https://… an RSS feed, a news site, or an X post link"
             value={url}
             onChange={(e) => setUrl(e.target.value)}
-            className="w-full rounded-xl border border-separator bg-bg px-3 py-2.5 text-sm text-text outline-none placeholder:text-text-3 focus:border-accent"
+            className={`${field} text-sm`}
           />
           <div className="mt-2 flex flex-wrap items-center gap-1.5 text-xs text-text-3">
             <span>try</span>
             {EXAMPLES.map((ex) => (
-              <button
-                key={ex.url}
-                type="button"
-                onClick={() => setUrl(ex.url)}
-                className="rounded-full bg-surface-2 px-2 py-0.5 text-text-2 hover:text-text"
-              >
+              <button key={ex.url} type="button" onClick={() => setUrl(ex.url)} className={chip}>
                 {ex.label}
               </button>
             ))}
@@ -83,14 +79,10 @@ export function SourceInput({ busy, onSubmit }: { busy: boolean; onSubmit: (sour
             placeholder="One post or headline per line"
             value={text}
             onChange={(e) => setText(e.target.value)}
-            className="w-full resize-y rounded-xl border border-separator bg-bg px-3 py-2.5 font-mono text-[13px] leading-relaxed text-text outline-none placeholder:text-text-3 focus:border-accent"
+            className={`${field} resize-y font-mono text-xs leading-relaxed`}
           />
           <div className="mt-1 flex items-center gap-2 text-xs text-text-3">
-            <button
-              type="button"
-              onClick={() => setText(SAMPLE_PASTE)}
-              className="rounded-full bg-surface-2 px-2 py-0.5 text-text-2 hover:text-text"
-            >
+            <button type="button" onClick={() => setText(SAMPLE_PASTE)} className={chip}>
               fill with sample posts
             </button>
           </div>
@@ -101,11 +93,11 @@ export function SourceInput({ busy, onSubmit }: { busy: boolean; onSubmit: (sour
         <button
           type="submit"
           disabled={!canSubmit}
-          className="rounded-xl bg-accent px-4 py-2 text-sm font-semibold text-white transition disabled:cursor-not-allowed disabled:opacity-40"
+          className="rounded-md bg-ink px-4 py-2 text-sm font-semibold text-paper transition-colors hover:bg-accent disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-ink"
         >
           {busy ? 'Judging…' : 'Analyze'}
         </button>
-        <span className="text-xs text-text-3">
+        <span className="text-xs italic text-text-3">
           X profiles and searches need the paid X API; paste those posts instead.
         </span>
       </div>
