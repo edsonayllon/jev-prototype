@@ -83,9 +83,10 @@ describe('scoreItem', () => {
       material: 0.5,
       specific: 0.7,
     })
-    expect(scoreItem(at).attention).toBeCloseTo(0.55, 10)
-    expect(scoreItem(at).worth).toBe(true)
-    expect(scoreItem({ ...at, specific: 0.69 }).worth).toBe(false)
+    const cfg = { ...DEFAULT_RANKING, worthThreshold: 0.55 }
+    expect(scoreItem(at, cfg).attention).toBeCloseTo(0.55, 10)
+    expect(scoreItem(at, cfg).worth).toBe(true)
+    expect(scoreItem({ ...at, specific: 0.69 }, cfg).worth).toBe(false)
   })
 
   it('marks low-confidence choices unsure without changing attention', () => {

@@ -34,7 +34,7 @@ type probabilities, so the policy stays in code where it can be tested and tuned
 
 ```
 attention = (0.40·novelty/3 + 0.35·material + 0.25·specific) × (1 − p(scam)) × (1 − 0.6·p(shill)) × (1 − 0.5·p(other))
-worth     = attention ≥ 0.55, unless flagged (injection ≥ 0.6 forces attention to 0 and sorts last)
+worth     = attention ≥ 0.75, unless flagged (injection ≥ 0.6 forces attention to 0 and sorts last)
 ```
 
 All thresholds live in `shared/config.ts`. Item text is untrusted: it only ever appears in the `state` sent to

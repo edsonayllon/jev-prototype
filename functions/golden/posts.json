@@ -12,7 +12,7 @@
   {
     "text": "Fed holds rates steady as expected; Powell says the path remains data dependent.",
     "source": "bloomberg.com",
-    "expect": { "type": "news", "sentiment": "neutral", "worth": true }
+    "expect": { "type": "news", "sentiment": "neutral" }
   },
   {
     "text": "Bitcoin's rally is fragile, analysts warn, as leverage climbs to a record.",

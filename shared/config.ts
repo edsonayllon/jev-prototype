@@ -17,7 +17,7 @@ export const DEFAULT_RANKING: RankingConfig = {
   weights: { novelty: 0.4, material: 0.35, specific: 0.25 },
   penalties: { scam: 1.0, shill: 0.6, other: 0.5 },
   injectionFlag: 0.6,
-  worthThreshold: 0.55,
+  worthThreshold: 0.75,
   unsureConfidence: 0.6,
 }
 
